@@ -8,4 +8,7 @@ target = "thumbv7m-none-eabi"    # Cortex-M3
 rustflags = [
     # LLD (shipped with the Rust toolchain) is used as the default linker
     "-C", "link-arg=-Tlink.x",
+        # if you run into problems with LLD switch to the GNU linker by commenting out
+    # this line
+    # "-C", "linker=arm-none-eabi-ld",
     
