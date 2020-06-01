@@ -18,3 +18,7 @@ rustflags = [
     # "-C", "link-arg=-Wl,-Tlink.x",
     # "-C", "link-arg=-nostartfiles",
 ]
+
+# uncomment this to make `cargo run` execute programs on QEMU
+# runner = "qemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -nographic -semihosting-config enable=on,target=native -kernel"
+
