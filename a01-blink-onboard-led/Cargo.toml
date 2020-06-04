@@ -22,3 +22,4 @@ features = ["rt", "stm32f103", "medium"]
 [[bin]]
 name = "a01-blink-onboard-led"
 test = false
+bench = false
