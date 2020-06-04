@@ -20,3 +20,4 @@ features = ["rt", "stm32f103", "medium"]
 
 # this lets you use `cargo fix`!
 [[bin]]
+name = "a01-blink-onboard-led"
