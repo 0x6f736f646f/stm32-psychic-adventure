@@ -25,3 +25,4 @@ test = false
 bench = false
 
 [profile.release]
+codegen-units = 1 # better optimizations
