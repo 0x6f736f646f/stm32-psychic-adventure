@@ -23,3 +23,5 @@ features = ["rt", "stm32f103", "medium"]
 name = "a01-blink-onboard-led"
 test = false
 bench = false
+
+[profile.release]
