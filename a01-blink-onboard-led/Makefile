@@ -13,3 +13,6 @@ run:
 
 build:
 	cargo build
+
+compile:
+	$(AOC) $(AFLAGS) $(KERNEL_ELF)/a01-blink-onboard-led $(KERNEL_BIN)
