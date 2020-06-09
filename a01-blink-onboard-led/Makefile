@@ -28,3 +28,6 @@ all: $(KERNEL_BIN)
 
 $(KERNEL_BIN): $(KERNEL_ELF) $(MAIN_FILE)
 	$(AOC) $(AFLAGS) $(KERNEL_ELF)/a01-blink-onboard-led $(KERNEL_BIN)
+
+$(KERNEL_ELF): $(MAIN_FILE)
+	cargo build
