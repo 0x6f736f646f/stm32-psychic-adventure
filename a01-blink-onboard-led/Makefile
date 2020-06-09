@@ -1,4 +1,6 @@
 AOC = arm-none-eabi-objcopy
+TARGET = thumbv7m-none-eabi
+
 KERNEL_BIN = kernel.bin
 KERNEL_ELF = target/$(TARGET)/debug
 MAIN_FILE = src/main.rs
