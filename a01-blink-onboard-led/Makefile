@@ -16,3 +16,6 @@ build:
 
 compile:
 	$(AOC) $(AFLAGS) $(KERNEL_ELF)/a01-blink-onboard-led $(KERNEL_BIN)
+
+flash: $(KERNEL_BIN)
+	stm32flash -w $< $(FFLAGS) $(USB_PORT)
