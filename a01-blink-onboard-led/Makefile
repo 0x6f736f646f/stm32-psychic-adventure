@@ -23,3 +23,5 @@ flash: $(KERNEL_BIN)
 clean:
 	cargo clean
 	rm $(KERNEL_BIN)
+
+all: $(KERNEL_BIN)
