@@ -33,4 +33,3 @@ all: $(KERNEL_BIN)
 clean:
 	cargo clean
 	rm $(KERNEL_BIN)
-
