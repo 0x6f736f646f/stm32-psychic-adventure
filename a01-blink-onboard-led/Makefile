@@ -7,6 +7,7 @@ MAIN_FILE = src/main.rs
 
 AFLAGS = -O binary
 FFLAGS = -v -g 0x8000000
+
 USB_PORT = /dev/ttyUSB0
 
 run:
