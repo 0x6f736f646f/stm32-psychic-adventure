@@ -28,6 +28,8 @@ compile:
 flash: $(KERNEL_BIN)
 	stm32flash -w $< $(FFLAGS) $(USB_PORT)
 
+all: $(KERNEL_BIN)
+
 clean:
 	cargo clean
 	rm $(KERNEL_BIN)
