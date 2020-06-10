@@ -10,6 +10,12 @@ FFLAGS = -v -g 0x8000000
 
 USB_PORT = /dev/ttyUSB0
 
+$(KERNEL_BIN): $(KERNEL_ELF) $(MAIN_FILE)
+	$(AOC) $(AFLAGS) $(KERNEL_ELF)/a01-blink-onboard-led $(KERNEL_BIN)
+
+$(KERNEL_ELF): $(MAIN_FILE)
+	cargo build
+
 run:
 	qemu-system-arm --cpu cortex-m3 --machine lm3s6965evb --nographic --semihosting-config enable=on,target=native --kernel target/thumbv7m-none-eabi/debug/a01-blink-onboard-led
 
