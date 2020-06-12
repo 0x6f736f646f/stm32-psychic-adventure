@@ -66,6 +66,47 @@ fn main() -> ! {
     // let tx = gpioa.pa2.into_alternate_push_pull(&mut gpioa.crl);
     // let rx = gpioa.pa3;
 
-fn main() {
-    println!("Hello, world!");
+    // USART3
+    // Configure pb10 as a push_pull output, this will be the tx pin
+    let tx = gpiob.pb10.into_alternate_push_pull(&mut gpiob.crh);
+    // Take ownership over pb11
+    let rx = gpiob.pb11;
+
+    // Set up the usart device. Taks ownership over the USART register and tx/rx pins. The rest of
+    // the registers are used to enable and configure the device.
+    let mut serial = Serial::usart3(
+        dp.USART3,
+        (tx, rx),
+        &mut afio.mapr,
+        Config::default().baudrate(9600.bps()),
+        clocks,
+        &mut rcc.apb1,
+    );
+
+    // Loopback test. Write `X` and wait until the write is successful.
+    let sent = b'X';
+    block!(serial.write(sent)).ok();
+
+    // Read the byte that was just sent. Blocks until the read is complete
+    let received = block!(serial.read()).unwrap();
+
+    // Since we have connected tx and rx, the byte we sent should be the one we received
+    assert_eq!(received, sent);
+
+    // Trigger a breakpoint to allow us to inspect the values
+    asm::bkpt();
+
+    // You can also split the serial struct into a receiving and a transmitting part
+    let (mut tx, mut rx) = serial.split();
+    let sent = b'Y';
+    block!(tx.write(sent)).ok();
+    let received = block!(rx.read()).unwrap();
+    assert_eq!(received, sent);
+    asm::bkpt();
+    loop {
+        block!(timer.wait()).unwrap();
+        led.set_high().unwrap();
+        block!(timer.wait()).unwrap();
+        led.set_low().unwrap();
+    }
 }
